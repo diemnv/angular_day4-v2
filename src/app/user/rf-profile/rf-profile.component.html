@@ -1,0 +1,95 @@
+<form novalidate (ngSubmit)="onSubmit(profileFRM)" class="row justify-content-md-center" [formGroup]="profileFRM">
+  <div class="col-md-8">
+    <div class="form-group row">
+      <label for="example-text-input" class="col-2 col-form-label">
+        Name:
+      </label>
+      <div class="col-10">
+        <input class="form-control" type="text" id="example-text-input" formControlName="username"
+        [ngClass] ="{'is-valid':profileFRM.get('username').valid,'is-invalid':profileFRM.get('username').invalid && profileFRM.get('username').touched}">
+      </div>
+
+    </div>
+    <div *ngIf="profileFRM.get('username').invalid && profileFRM.get('username').touched" class="alert alert-danger" role="alert">
+      <ng-container *ngIf="profileFRM.get('username').hasError('required')">
+        username is required
+      </ng-container>
+      <ng-container *ngIf="profileFRM.get('username').hasError('minlength')">
+        Min length
+        {{ profileFRM.get('username').getError('minlength').requiredLength }}
+      </ng-container>
+    </div>
+    <div class="form-group row">
+      <label for="example-email-input" class="col-2 col-form-label">
+        Email:
+      </label>
+      <div class="col-10">
+        <input class="form-control" type="email" id="example-email-input" formControlName="email"
+        [ngClass] ="{'is-valid':profileFRM.get('email').valid,'is-invalid':profileFRM.get('email').invalid && profileFRM.get('email').touched }">
+      </div>
+
+    </div>
+    <div *ngIf="profileFRM.get('email').invalid && profileFRM.get('email').touched" class="alert alert-danger" role="alert">
+      <ng-container *ngIf="profileFRM.get('email').hasError('required')">
+        email is required
+      </ng-container>
+      <ng-container *ngIf="profileFRM.get('email').hasError('email')">
+        email not correct format
+      </ng-container>
+      <ng-container *ngIf="profileFRM.get('email').hasError('gmailInvalidator')">
+        Email invalidator
+      </ng-container>
+    </div>
+    <fieldset formGroupName="social">
+
+      <div class="form-group row">
+        <label for="example-url-fb" class="col-2 col-form-label">
+          Facebook:
+        </label>
+        <div class="col-10">
+          <input class="form-control" type="url" id="example-url-fb" formControlName="facebook">
+        </div>
+        <div *ngIf="profileFRM.get('social.facebook').invalid && profileFRM.get('social.facebook').touched" class="alert alert-danger" role="alert">
+          <ng-container *ngIf="profileFRM.get('social.facebook').hasError('required')">
+            facebook is required
+          </ng-container>
+          <ng-container *ngIf="profileFRM.get('social.facebook').hasError('minlength')">
+            Min length
+            {{ profileFRM.get('social.facebook').getError('minlength').requiredLength }}
+          </ng-container>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-url-twt" class="col-2 col-form-label">
+          Twitter:
+        </label>
+        <div class="col-10">
+          <input class="form-control" type="url" id="example-url-twt" formControlName="twitter">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-url-web" class="col-2 col-form-label">
+          Website:
+        </label>
+        <div class="col-10">
+          <input class="form-control" type="url" id="example-url-web" formControlName="website">
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-group row">
+      <label for="example-tel-input" class="col-2 col-form-label">
+        Tel:
+      </label>
+      <div class="col-10">
+        <input class="form-control" type="tel" id="example-tel-input" formControlName="telephone">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-10 offset-2">
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+  <pre>
+    <!-- {{profileFRM.get('email')?.errors |json}} -->
+  </pre>

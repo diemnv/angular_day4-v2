@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'day4-v2';
+  title = 'angular-form-day04';
+  save(value: string) {
+    console.log(value);
+  }
 }

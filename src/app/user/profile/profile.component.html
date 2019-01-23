@@ -1,0 +1,73 @@
+<form novalidate (ngSubmit)="onSubmit(form)" class="row justify-content-md-center" #form="ngForm">
+  <div class="col-md-8">
+    <div class="form-group row">
+      <label for="example-text-input" class="col-md-2 col-form-label">Name:</label>
+      <div class="col-md-10">
+        <input class="form-control" type="text" id="example-text-input" [ngModel]="profile.name" name="name" required
+          minlength="5">
+
+        <div *ngIf="form.controls.name?.invalid && form.controls.name?.touched" class="alert alert-danger" role="alert">
+          <ng-container *ngIf="form.controls.name.errors['required']">
+            username is required
+          </ng-container>
+          <ng-container *ngIf="form.controls.name.errors['minlength']">
+            Min length {{form.controls.name.errors['minlength'].requiredLength}}
+          </ng-container>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group row">
+      <label for="example-email-input" class="col-md-2 col-form-label">Email:</label>
+      <div class="col-md-10">
+        <input class="form-control" type="email" id="example-email-input" [ngModel]="profile.email" name="email"
+          required email>
+        <div *ngIf="form.controls.email?.invalid && form.controls.email?.touched" class="alert alert-danger" role="alert">
+          <ng-container *ngIf="form.controls.email.errors['required']">
+            Email is required
+          </ng-container>
+          <ng-container *ngIf="form.controls.email.errors['email']">
+            Email not correct format
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-url-fb" class="col-md-2 col-form-label">Facebook:</label>
+      <div class="col-md-10">
+        <input class="form-control" type="url" id="example-url-fb" [ngModel]="profile.facebook" name="facebook">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-url-twt" class="col-md-2 col-form-label">Twitter:</label>
+      <div class="col-md-10">
+        <input class="form-control" type="url" id="example-url-twt" [ngModel]="profile.twitter" name="twitter">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-url-web" class="col-md-2 col-form-label">Website:</label>
+      <div class="col-md-10">
+        <input class="form-control" type="url" id="example-url-web" [ngModel]="profile.website" name="website">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-tel-input" class="col-md-2 col-form-label">Tel:</label>
+      <div class="col-md-10">
+        <input class="form-control" type="tel" id="example-tel-input" [ngModel]="profile.telephone" name="telephone">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-10 offset-md-2">
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
+<p>Form value : </p>
+<pre>
+  {{form.value | json}}
+
+  {{form.controls.name?.errors |json}}
+  {{form.controls.email?.errors |json}}
+</pre>
